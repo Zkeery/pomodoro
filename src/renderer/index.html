@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; style-src 'self'; script-src 'self'; img-src 'self' data:;"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>番茄钟</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <header class="titlebar">
+        <div class="traffic">
+          <button class="dot close" id="btn-close" title="关闭" aria-label="关闭"></button>
+          <button class="dot minimize" id="btn-minimize" title="最小化" aria-label="最小化"></button>
+          <span class="dot inert"></span>
+        </div>
+        <div class="drag-title">番茄钟</div>
+        <div class="title-actions">
+          <button class="icon-btn" id="btn-pin" title="置顶窗口" aria-label="置顶窗口" aria-pressed="true">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M14.5 4.5 19 9l-4.2.7-5.6 5.6-1.8 3.1-1.3-1.3 3.1-1.8 5.6-5.6.7-4.2ZM5 19l3.2-1.8"
+              />
+            </svg>
+          </button>
+          <button class="icon-btn" id="btn-settings" title="设置" aria-label="设置">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M12 8.2a3.8 3.8 0 1 1 0 7.6 3.8 3.8 0 0 1 0-7.6Zm8.1 3.2-.9-2.1 1.2-2-1.7-1.7-2 1.2-2.1-.9-.4-2.3h-2.4l-.4 2.3-2.1.9-2-1.2-1.7 1.7 1.2 2-.9 2.1-2.3.4v2.4l2.3.4.9 2.1-1.2 2 1.7 1.7 2-1.2 2.1.9.4 2.3h2.4l.4-2.3 2.1-.9 2 1.2 1.7-1.7-1.2-2 .9-2.1 2.3-.4v-2.4l-2.3-.4Z"
+              />
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <main class="content">
+        <div class="mode-row" role="tablist" aria-label="模式">
+          <button class="mode active" data-mode="work" role="tab" aria-selected="true">工作</button>
+          <button class="mode" data-mode="short" role="tab" aria-selected="false">短休息</button>
+          <button class="mode" data-mode="long" role="tab" aria-selected="false">长休息</button>
+        </div>
+
+        <section class="timer-wrap" aria-live="polite">
+          <svg class="ring" viewBox="0 0 220 220" aria-hidden="true">
+            <circle class="ring-track" cx="110" cy="110" r="96" />
+            <circle class="ring-progress" id="ring" cx="110" cy="110" r="96" />
+          </svg>
+          <div class="timer-core">
+            <div class="tomato" aria-hidden="true">
+              <span class="leaf left"></span>
+              <span class="leaf right"></span>
+            </div>
+            <div class="time" id="time">25:00</div>
+            <div class="status" id="status">准备开始专注</div>
+          </div>
+        </section>
+
+        <div class="dots" id="dots" aria-label="本轮番茄进度"></div>
+
+        <div class="controls">
+          <button class="ghost" id="btn-reset" title="重置 (R)">重置</button>
+          <button class="primary" id="btn-toggle" title="开始 / 暂停 (空格)">开始</button>
+          <button class="ghost" id="btn-skip" title="跳过 (S)">跳过</button>
+        </div>
+
+        <footer class="stats">
+          <div>
+            <span class="label">今日完成</span>
+            <strong id="today-count">0</strong>
+          </div>
+          <div class="hint">空格 开始/暂停 · R 重置 · S 跳过</div>
+        </footer>
+      </main>
+
+      <aside class="sheet" id="settings" hidden>
+        <div class="sheet-head">
+          <h2>设置</h2>
+          <button class="text-btn" id="btn-close-settings">完成</button>
+        </div>
+        <label>
+          工作（分钟）
+          <input id="input-work" type="number" min="1" max="180" />
+        </label>
+        <label>
+          短休息（分钟）
+          <input id="input-short" type="number" min="1" max="60" />
+        </label>
+        <label>
+          长休息（分钟）
+          <input id="input-long" type="number" min="1" max="90" />
+        </label>
+        <label class="toggle">
+          <span>完成时播放提示音</span>
+          <input id="input-sound" type="checkbox" />
+        </label>
+        <p class="note">每完成 4 个番茄后自动进入长休息。今日计数保存在本机。</p>
+      </aside>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>

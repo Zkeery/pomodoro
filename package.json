@@ -1,0 +1,16 @@
+{
+  "name": "pomodoro",
+  "version": "1.0.0",
+  "description": "精致的 macOS 桌面番茄钟小组件",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron ."
+  },
+  "author": "",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "electron": "^35.1.5"
+  }
+}
