@@ -1,0 +1,10 @@
+{
+  "name": "Pomodoro (Electron)",
+  "install": "npm install",
+  "terminals": [
+    {
+      "name": "pomodoro",
+      "command": "./scripts/dev-linux.sh"
+    }
+  ]
+}
